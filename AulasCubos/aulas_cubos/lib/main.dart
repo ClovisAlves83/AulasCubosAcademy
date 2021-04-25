@@ -16,24 +16,12 @@ class MyApp extends StatelessWidget {
             margin: EdgeInsets.all(50),
             child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  color: Colors.green,
-                  height: 100,
-                  width: 300,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  color: Colors.white,
-                  height: 100,
-                  width: 300,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 30),
-                  color: Colors.white,
-                  height: 100,
-                  width: 300,
-                ),
+                InserirContainer(
+                    cor: Colors.white, largura: 300, altura: 100, top: 30),
+                InserirContainer(
+                    cor: Colors.white, largura: 300, altura: 100, top: 30),
+                InserirContainer(
+                    cor: Colors.white, largura: 300, altura: 100, top: 30),
               ],
             ),
           ),
@@ -44,25 +32,51 @@ class MyApp extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                color: Colors.green,
-                height: 50,
-                width: 50,
-              ),
-              Container(
-                color: Colors.yellow,
-                height: 50,
-                width: 50,
-              ),
-              Container(
-                color: Colors.red,
-                height: 50,
-                width: 50,
-              ),
+              InserirContainer(
+                  cor: Colors.green, largura: 50, altura: 50, top: 0),
+              InserirContainer(
+                  cor: Colors.yellow, largura: 50, altura: 50, top: 0),
+              InserirContainer(
+                  cor: Colors.red, largura: 50, altura: 50, top: 0),
+              // Container(
+              //   color: Colors.green,
+              //   height: 50,
+              //   width: 50,
+              // ),
+              // Container(
+              //   color: Colors.yellow,
+              //   height: 50,
+              //   width: 50,
+              // ),
+              // Container(
+              //   color: Colors.red,
+              //   height: 50,
+              //   width: 50,
+              // ),
             ],
           ),
         ),
       ],
     ));
+  }
+}
+
+class InserirContainer extends StatelessWidget {
+  final Color cor;
+  final double largura;
+  final double altura;
+  final double top;
+
+  InserirContainer({Key key, this.cor, this.largura, this.altura, this.top})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: top),
+      color: cor,
+      height: altura,
+      width: largura,
+    );
   }
 }
