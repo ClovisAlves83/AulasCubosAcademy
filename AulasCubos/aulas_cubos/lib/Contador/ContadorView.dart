@@ -20,12 +20,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int contador = 0;
-
-  // void incrementCounter() {
-  //   setState(() {
-  //     ContadorController().getCounter();
-  //   });
-  // }
+  final controller = ContadorController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text('Contador :'),
             Text(
-              // ContadorController().getCounter(),
-              '$contador',
+              controller.getCounter(),
+              //'$contador',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
@@ -78,7 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _onItemTapped(int index) {
     setState(() {
-      contador = ContadorController().incrementCounter(index, contador);
+      controller.incrementCounter2(index);
     });
+    //ContadorController().incrementCounter2(index);
+    // setState(() {
+    //   contador = ContadorController().incrementCounter(index, contador);
+    // });
   }
 }
