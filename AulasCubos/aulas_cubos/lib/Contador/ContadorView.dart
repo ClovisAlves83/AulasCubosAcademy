@@ -1,12 +1,20 @@
+import 'package:aulas_cubos/Contador/ContadorController.dart';
 import 'package:flutter/material.dart';
-import 'ContadorController.dart';
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyHomePage(title: 'Meu Contador'),
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -14,70 +22,59 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int contador = 0;
   final controller = ContadorController();
+
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  //}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-          centerTitle: true,
-          title: new Text(widget.title, textAlign: TextAlign.center)),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Contador :'),
+            Text('Número :', style: TextStyle(fontSize: 25.0)),
             Text(
-              controller.getCounter(),
-              //'$contador',
+              controller.getRandom(),
               style: Theme.of(context).textTheme.headline4,
             ),
+            Text('Resultado :', style: TextStyle(fontSize: 25.0)),
+            Text(
+              controller.getParImpar(),
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            ElevatedButton(
+                child: const Text('Reset',
+                    style: TextStyle(fontSize: 40.0, color: Colors.white)),
+                // color: Colors.green,
+                // splashColor: Colors.red,
+                onPressed: () {
+                  setState(() {
+                    controller.pegarNumero();
+                  });
+                  // faz alguma coisa
+                }),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.clear),
-            label: 'Zerar',
-            backgroundColor: Colors.black,
-          ),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.business),
-          //   label: 'Business',
-          //   backgroundColor: Colors.red,
-          // ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Adicionar',
-            backgroundColor: Colors.black,
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.remove),
-              label: 'Remover',
-              backgroundColor: Colors.black),
-        ],
-        //currentIndex: _selectedIndex,
-        //selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-        backgroundColor: Colors.red,
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Gerar',
+      //   child: Icon(Icons.refresh),
+      // ),
     );
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      controller.incrementCounter2(index);
-    });
-    //ContadorController().incrementCounter2(index);
-    // setState(() {
-    //   contador = ContadorController().incrementCounter(index, contador);
-    // });
   }
 }

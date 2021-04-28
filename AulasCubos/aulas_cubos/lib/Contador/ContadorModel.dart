@@ -1,12 +1,23 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
 class ContadorModel {
   int _counter = 0;
+  int _random = 0;
+  String _parImpar = "Par";
 
   int get counter {
     return _counter;
+  }
+
+  int get random {
+    return _random;
+  }
+
+  String get parImpar {
+    return _parImpar;
   }
 
   int incrementCounter(int index, int counter) {
@@ -57,5 +68,15 @@ class ContadorModel {
 
   sub(a, b) {
     return a - b;
+  }
+
+  void pegarNumero() {
+    _random = Random().nextInt(1000);
+
+    if (_random % 2 == 0) {
+      _parImpar = "Par";
+    } else {
+      _parImpar = "Impar";
+    }
   }
 }
